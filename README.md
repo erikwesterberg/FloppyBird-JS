@@ -1,7 +1,7 @@
 # FlappyBird-JavaScript
 
-The Snake game, created using JavaScript, and The HTML5 canvas.
+[Netlify](https://stoic-heisenberg-6a486f.netlify.com/) - deployment
 
-Download the starter template, and follow the tutorial on youtube step by step.
+The Snake game, created using JavaScript, and The HTML5 canvas.
 
 Tutorial link : https://www.youtube.com/watch?v=L07i4g-zhDA
