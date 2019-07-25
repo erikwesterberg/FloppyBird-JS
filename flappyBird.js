@@ -18,15 +18,33 @@ pipeSouth.src = "images/pipeSouth.png";
 // some variables
 let gap = 85;
 let constant = pipeNorth.height+gap;
+
+
 let bX = 10;
 let bY = 150;
 
+//graviy
+
 let gravity = 1.5;
+
+//Score variable
+
+let score = 0;
+
+//audio files
+
+let fly = new Audio();
+let scor = new Audio();
+
+fly.src = "sounds/fly.mp3"
+scor.src = "sounds/score.mp3"
 // on key down
+
 document.addEventListener("keydown", moveUp)
 
 function moveUp(){
-    bY -= 25;
+    bY -= 30;
+    fly.play();
 };
 // pipe coordinates
 let pipe = [];
@@ -34,20 +52,24 @@ let pipe = [];
 pipe[0] = {
     x: canvas.width,
     y: 0
-}
+};
+
 const draw = () => {
     
     context.drawImage(bg, 0, 0);
     
-    for(var i = 0; i < pipe.length; i++){
-        context.drawImage(pipeNorth, pipe[i].x,pipe[i].y);
-        context.drawImage(pipeSouth, pipe[i],pipe[i].y+constant);
-        pipe[i].x--;
-
-        if(pipe[i].x == 125){
+    for(let i = 0; i < pipe.length; i++){
+        
+        constant = pipeNorth.height + gap;
+        context.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
+        context.drawImage(pipeSouth, pipe[i].x, pipe[i].y + constant);
+        pipe[i].x--
+        
+        if( pipe[i].x == 125 ){
             pipe.push({
-                x: canvas.width,
-                y: Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
+                x : canvas.width,
+                y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
+                
             });
         }
 
@@ -61,9 +83,8 @@ const draw = () => {
             scor.play();
         }
     }
-    context.drawImage(bg, 0, 0);
-    context.drawImage(pipeNorth, 100, 0);
-    context.drawImage(pipeSouth, 100, 0+constant);
+   
+    
     context.drawImage(fg, 0, canvas.height - fg.height);
     context.drawImage(bird, bX, bY);
 
@@ -71,11 +92,11 @@ const draw = () => {
 
     context.fillStyle = "#000";
     context.font = "20px Verdana";
-    context.fillText("Score : "+score,10,cvs.height-20);
+    context.fillText("Score : " + score, 10, canvas.height - 20);
     
     requestAnimationFrame(draw)
     
-}
+    }
 
 
 
